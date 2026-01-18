@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST | NODEJS SMALL APPLICATION | PASSING DATA FROM YOUR WEBSPAGE TO YOUR SERVER</title>
+
+    <!-- LINK CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <h1 class="display-4"><%= listTitle %></h1>
+            <!-- <ul>
+                <% for(var i = 0; i < newListItem.length; i++) { %>
+                    <li><%= newListItem[i] %></li>
+                <% } %>
+            </ul> -->
+            <div class="list-group mt-3">
+            <% for (let i = 0; i < newListItem.length; i++) { %>
+                <button type="button" class="list-group-item list-group-item-action todo-item d-flex justify-content">
+                <span class="todo-text"><%= newListItem[i] %></span>
+                <span class="badge bg-secondary rounded-pill close-badge">✕</span>
+                </button>
+            <% } %>
+            </div>
+
+
+
+            <!-- <form action="/" method="POST">
+                <input type="text" name="newListItem">
+                <button type="submit" name="list" value="<%= listTitle %>">Add-</button>
+            </form> -->
+            <form action="/" method="POST" class="row row-cols-lg-auto g-3 align-items-center mt-3">
+  
+                <div class="col-12">
+                    <label class="visually-hidden" for="todoInput">New Item</label>
+                    <div class="input-group">
+                    <span class="input-group-text">+</span>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="todoInput"
+                        name="newListItem"
+                        placeholder="Add new task"
+                        required
+                    >
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <button
+                    type="submit"
+                    class="btn btn-primary"
+                    name="list"
+                    value="<%= listTitle %>"
+                    >
+                    Add
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    
+
+
+
+
+    <!-- SCRIPT TAG -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- CUSTOM SCRIPT -->
+    <script>
+    document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("close-badge")) {
+        e.stopPropagation(); // prevents button click
+        const item = e.target.closest(".todo-item");
+        item.classList.toggle("completed");
+        }
+    });
+    </script>
+
+
+
+</body>
+</html>
